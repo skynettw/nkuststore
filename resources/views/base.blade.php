@@ -11,8 +11,10 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    @include('menu');
-    @yield('main');
+    @include('menu')
+    <div class="container">
+      @yield('main')
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

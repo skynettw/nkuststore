@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,12 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('test');
+    $names = array("Richard", "Tom", "Lisa", "Maria");
+    return view('test', compact('names'));
 });
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', [NewsController::class, "index"])->name("news.index");
+Route::get('/del/{id}/', [NewsController::class, "del"])->name("news.del");
+Route::post('/postit', [NewsController::class, "postit"])->name("news.postit");
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
